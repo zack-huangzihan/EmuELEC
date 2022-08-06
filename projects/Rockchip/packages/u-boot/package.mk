@@ -37,9 +37,11 @@ case "$PROJECT" in
 	PKG_URL="https://github.com/hardkernel/u-boot/archive/$PKG_VERSION.tar.gz"
 	PKG_PATCH_DIRS="OdroidM1"
   elif [ "$DEVICE" == "RK356x" ]; then
-    PKG_VERSION="fc354ea827411c1cc35ddf76162aed02f7a9c7d5"
-    PKG_SHA256="eefe0b87e40d801a649a4ea6e062ed239aa08be1cbf81fa4e6a13e9344bf556d"
-    PKG_URL="https://gitlab.com/firefly-linux/u-boot/-/archive/$PKG_VERSION/u-boot-$PKG_VERSION.tar.gz"
+    #PKG_VERSION="fc354ea827411c1cc35ddf76162aed02f7a9c7d5"
+    PKG_VERSION="release"
+	#PKG_SHA256="eefe0b87e40d801a649a4ea6e062ed239aa08be1cbf81fa4e6a13e9344bf556d"
+    #PKG_URL="https://gitlab.com/firefly-linux/u-boot/-/archive/$PKG_VERSION/u-boot-$PKG_VERSION.tar.gz"
+	PKG_URL="file:///home/huangzihan/third_party/game_project/EmuELEC/sources/u-boot/u-boot-$PKG_VERSION.tar.gz"
     PKG_PATCH_DIRS="RK356x"
    else
     PKG_VERSION="8659d08d2b589693d121c1298484e861b7dafc4f"

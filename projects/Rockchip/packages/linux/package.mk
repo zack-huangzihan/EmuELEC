@@ -23,11 +23,14 @@ case "$LINUX" in
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     ;;
   rk356x-4.19)
-    PKG_VERSION="c0c173e0214eeaa0d057599d2f1c6a83213483b1"
-    PKG_SHA256="d748bc0f272373ed219a9bfd242566871dafd0437f88d0212780b8469ea89e5e"
-    PKG_URL="https://gitlab.com/firefly-linux/kernel/-/archive/$PKG_VERSION/kernel-$PKG_VERSION.tar.gz"
-    PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
-    PKG_PATCH_DIRS="RK356x"
+    PKG_VERSION="release"
+	#PKG_VERSION="c0c173e0214eeaa0d057599d2f1c6a83213483b1"
+    #PKG_SHA256="d748bc0f272373ed219a9bfd242566871dafd0437f88d0212780b8469ea89e5e"
+    PKG_SHA256="1f024125bb549447c3d46fc48c7429f0aac2749a4bfea96383b7ad77af4f737d"
+	#PKG_URL="https://gitlab.com/firefly-linux/kernel/-/archive/$PKG_VERSION/kernel-$PKG_VERSION.tar.gz"
+    PKG_URL="file:///home/huangzihan/third_party/game_project/EmuELEC/sources/linux/linux-$LINUX-$PKG_VERSION.tar.gz"
+	PKG_SOURCE_NAME="/home/huangzihan/third_party/game_project/EmuELEC/sources/linux/linux-$LINUX-$PKG_VERSION.tar.gz"
+	PKG_PATCH_DIRS="RK356x"
     ;;
   OdroidM1-4.19)
 	PKG_VERSION="e45b118834e1395eeacbed77e8b8f35e8105663e"

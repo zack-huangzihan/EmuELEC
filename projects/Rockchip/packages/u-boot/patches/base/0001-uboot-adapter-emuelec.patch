@@ -1,0 +1,26 @@
+From e82fca73eec584a179031d78b8e3584aa8e64b9b Mon Sep 17 00:00:00 2001
+From: ZiHan Huang <zack.huang@rock-chips.com>
+Date: Thu, 4 Aug 2022 17:04:50 +0800
+Subject: [PATCH] uboot adapter emuelec
+
+Signed-off-by: ZiHan Huang <zack.huang@rock-chips.com>
+---
+ configs/rk3568_defconfig | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/configs/rk3568_defconfig b/configs/rk3568_defconfig
+index d2742454eb..5ae9566a70 100644
+--- a/configs/rk3568_defconfig
++++ b/configs/rk3568_defconfig
+@@ -6,6 +6,8 @@ CONFIG_SYS_MALLOC_F_LEN=0x80000
+ CONFIG_SPL_FIT_GENERATOR="arch/arm/mach-rockchip/make_fit_atf.sh"
+ CONFIG_ROCKCHIP_RK3568=y
+ CONFIG_ROCKCHIP_FIT_IMAGE=y
++CONFIG_ROCKCHIP_EARLY_DISTRO_DTB=y
++CONFIG_ROCKCHIP_EARLY_DISTRO_DTB_PATH="rk-kernel.dtb"
+ CONFIG_ROCKCHIP_VENDOR_PARTITION=y
+ CONFIG_ROCKCHIP_FIT_IMAGE_PACK=y
+ CONFIG_ROCKCHIP_NEW_IDB=y
+-- 
+2.17.1
+
