@@ -1,4 +1,4 @@
-PKG_NAME="enable-oga-sleep"
+PKG_NAME="enable-evb-sleep"
 PKG_VERSION=""
 PKG_SHA256=""
 PKG_ARCH="any"
