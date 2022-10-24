@@ -251,7 +251,7 @@
 # e.g. ADDITIONAL_PACKAGES="PACKAGE1 PACKAGE2"
   ADDITIONAL_PACKAGES=""
 
-# start SX05RE added options
+# start EMU added options
 
 LAKKA_MIRROR="http://sources.lakka.tv"
 

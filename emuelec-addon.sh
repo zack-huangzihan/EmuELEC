@@ -15,8 +15,8 @@ PROJECT="$1"
 # make sure you change these lines to point to your EmuELEC git clone
 EMUELEC="${SCRIPT_DIR}"
 [ -z "$GIT_BRANCH" ] && GIT_BRANCH="master"
-SX05RE_PATH="packages/sx05re"
-EMUELEC_PATH="${SX05RE_PATH}/emuelec"
+EMU_PATH="packages/emu"
+EMUELEC_PATH="${EMU_PATH}/emuelec"
 [ -z "$EMUELEC_ADDON_VERSION" ] && EMUELEC_ADDON_VERSION="3.7"
 
 LOG="${SCRIPT_DIR}/emuelec-kodi_`date +%Y%m%d_%H%M%S`.log"
@@ -66,7 +66,7 @@ if [ $PROJECT = "Amlogic" ]; then
 PKG_EMUS="$PKG_EMUS PPSSPPSDL openbor"	
 fi
 
-PACKAGES_Sx05RE="$PKG_EMUS \
+PACKAGES_EMU="$PKG_EMUS \
 				emuelec \
 				empty \
 				sixpair \
@@ -98,7 +98,7 @@ PACKAGES_Sx05RE="$PKG_EMUS \
 
 LIBRETRO_EXTRA_CORES="citra beetle-psx beetle-saturn beetle-bsnes bsnes-mercury bsnes dinothawr higan-sfc-balanced higan-sfc lutro mame2003-midway mrboom dolphin openlara pocketcdg virtualjaguar"
 
-PACKAGES_ALL="$LIBRETRO_BASE $PACKAGES_ALL $PACKAGES_Sx05RE" 
+PACKAGES_ALL="$LIBRETRO_BASE $PACKAGES_ALL $PACKAGES_EMU" 
 DISABLED_CORES="libretro-database $LIBRETRO_EXTRA_CORES"
 
 if [ -n "$DISABLED_CORES" ] ; then
@@ -252,7 +252,7 @@ cp -rf "${TARGET_DIR}/usr/config" "${ADDON_DIR}/" &>>"$LOG"
 
 #fix addon specific scripts
 echo -ne "\tconfig dir"
-cp -rf ${SCRIPT_DIR}/${SX05RE_PATH}/emulationstation-addon/config/* "${ADDON_DIR}/config/emulationstation/" &>>"$LOG"
+cp -rf ${SCRIPT_DIR}/${EMU_PATH}/emulationstation-addon/config/* "${ADDON_DIR}/config/emulationstation/" &>>"$LOG"
 [ $? -eq 0 ] && echo "(ok)" || { echo "(failed)" ; exit 1 ; }
 
 echo -ne "\tProfile"
@@ -679,7 +679,8 @@ odyssey \
 zx81" 
  
      for romfolder in \$(echo \$all_roms | tr "," " "); do
-        mkdir -p "\$ROMS_FOLDER/\$romfolder"
+        echo "huangzihan log roms file creat !!!#######"
+		mkdir -p "\$ROMS_FOLDER/\$romfolder"
      done
   fi
  [ ! -d "\$ROMS_FOLDER/\$DOWNLOADS" ] && mkdir -p "\$ROMS_FOLDER/\$DOWNLOADS"
@@ -906,8 +907,8 @@ cp "${SCRIPT_DIR}/${EMUELEC_PATH}/addon/icon.png" resources/
 
 echo -ne "\tdowloading dldrastic.sh"
 wget -q -O dldrastic.sh https://gist.githubusercontent.com/shantigilbert/f95c44628321f0f4cce4f542a2577950/raw/
-sed -i "s|script.sx05re.launcher|${ADDON_NAME}|" dldrastic.sh
-sed -i "s|sx05re.log|emuelec.log|" dldrastic.sh
+sed -i "s|script.emu.launcher|${ADDON_NAME}|" dldrastic.sh
+sed -i "s|emu.log|emuelec.log|" dldrastic.sh
 cp dldrastic.sh config/emulationstation/scripts/dldrastic.sh
 rm dldrastic.sh
 [ $? -eq 0 ] && echo "(ok)" || { echo "(failed)" ; exit 1 ; }
