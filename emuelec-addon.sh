@@ -96,7 +96,7 @@ PACKAGES_Sx05RE="$PKG_EMUS \
 
   PACKAGES_ALL="$LIBRETRO_CORES"
 
-LIBRETRO_EXTRA_CORES="citra beetle-psx beetle-saturn beetle-bsnes bsnes-mercury bsnes dinothawr higan-sfc-balanced higan-sfc lutro mame2003-midway mrboom easyrpg dolphin openlara pocketcdg virtualjaguar"
+LIBRETRO_EXTRA_CORES="citra beetle-psx beetle-saturn beetle-bsnes bsnes-mercury bsnes dinothawr higan-sfc-balanced higan-sfc lutro mame2003-midway mrboom dolphin openlara pocketcdg virtualjaguar"
 
 PACKAGES_ALL="$LIBRETRO_BASE $PACKAGES_ALL $PACKAGES_Sx05RE" 
 DISABLED_CORES="libretro-database $LIBRETRO_EXTRA_CORES"
