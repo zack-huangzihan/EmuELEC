@@ -1,0 +1,57 @@
+From 2b71050d9abdc51716b8691d7053291a714eb074 Mon Sep 17 00:00:00 2001
+From: ZiHan Huang <zack.huang@rock-chips.com>
+Date: Wed, 26 Oct 2022 21:05:40 +0800
+Subject: [PATCH] sdl do not take over powerkey again
+
+Signed-off-by: ZiHan Huang <zack.huang@rock-chips.com>
+---
+ es-app/src/main.cpp          |  4 ++--
+ es-core/src/InputManager.cpp | 11 ++++++-----
+ 2 files changed, 8 insertions(+), 7 deletions(-)
+
+diff --git a/es-app/src/main.cpp b/es-app/src/main.cpp
+index 9bb96b49..4eddf8f6 100644
+--- a/es-app/src/main.cpp
++++ b/es-app/src/main.cpp
+@@ -677,8 +677,8 @@ int main(int argc, char* argv[])
+ 			{
+ 				TRYCATCH("InputManager::parseEvent", InputManager::getInstance()->parseEvent(event, &window));
+ 
+-				if (event.type == SDL_QUIT)
+-					running = false;
++				//if (event.type == SDL_QUIT)
++				//	running = false;
+ 			} 
+ 			while(SDL_PollEvent(&event));
+ 
+diff --git a/es-core/src/InputManager.cpp b/es-core/src/InputManager.cpp
+index 8d35f42e..5649df9d 100644
+--- a/es-core/src/InputManager.cpp
++++ b/es-core/src/InputManager.cpp
+@@ -341,11 +341,12 @@ bool InputManager::parseEvent(const SDL_Event& ev, Window* window)
+ 
+ #ifdef _ENABLEEMUELEC
+ 		/* use the POWER KEY to turn off EmuELEC, specially useful for GTKING-PRO and Odroid Go Advance*/
+-        if(ev.key.keysym.sym == SDLK_POWER) {
+-			Scripting::fireEvent("quit", "shutdown");
+-			quitES(QuitMode::SHUTDOWN);
++        if(ev.key.keysym.sym == SDLK_POWER) {			
++			//Scripting::fireEvent("quit", "shutdown");
++			//quitES(QuitMode::SHUTDOWN);
+ 			/*LOG(LogError) << "no quit?";*/
+-			return false;
++			//return false;
++			return true;
+ 		}
+ #endif
+ 
+@@ -859,4 +860,4 @@ void InputManager::sendMouseClick(Window* window, int button)
+ {
+ 	window->input(getInputConfigByDevice(DEVICE_MOUSE), Input(DEVICE_MOUSE, TYPE_BUTTON, button, true, false));
+ 	window->input(getInputConfigByDevice(DEVICE_MOUSE), Input(DEVICE_MOUSE, TYPE_BUTTON, button, false, false));
+-}
+\ No newline at end of file
++}
+-- 
+2.17.1
+

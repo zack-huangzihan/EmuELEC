@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2022-present huangzihan (https://github.com/zack-huangzihan)
+
+# Source predefined functions and variables
+. /etc/profile
+
+LOCKFILE=/tmp/.power_key
+
+evtest "/dev/input/event1" | while read line; do
+        if echo "$line" | grep "type 1 (EV_KEY), code 116 (KEY_POWER), value 1";then
+                if [ ! -f $LOCKFILE ]; then
+                        echo "Prepare to suspend..."
+
+                        touch $LOCKFILE
+                        echo mem > /sys/power/state
+                        { sleep 2 && rm $LOCKFILE; }&
+                fi
+        fi
+done

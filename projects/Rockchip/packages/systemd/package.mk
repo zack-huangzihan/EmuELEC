@@ -207,6 +207,9 @@ post_makeinstall_target() {
 
   # use systemd to set cpufreq governor and tunables
   find_file_path scripts/cpufreq && cp -PRv ${FOUND_PATH} ${INSTALL}/usr/bin
+  
+  # use systemd to set cpufreq governor and tunables
+  find_file_path scripts/power-key && cp -PRv ${FOUND_PATH} ${INSTALL}/usr/bin
 
   mkdir -p ${INSTALL}/usr/sbin
   cp ${PKG_DIR}/scripts/network-base-setup ${INSTALL}/usr/sbin
@@ -280,6 +283,7 @@ post_install() {
   enable_service usercache.service
   enable_service envconfig.service
   enable_service cpufreq.service
+  enable_service power-key.service
   enable_service network-base.service
   enable_service systemd-timesyncd.service
   enable_service systemd-timesyncd-setup.service

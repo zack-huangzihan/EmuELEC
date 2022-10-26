@@ -1,0 +1,13 @@
+[Unit]                                                                                                    
+Description=rockchip power key server
+ConditionPathExists=/dev/input/event1
+Before=emuelec.target
+
+[Service]
+Environment=HOME=/storage
+EnvironmentFile=/storage/.config/emulationstation/scripts/es_env.sh
+ExecStart=/usr/bin/power-key
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
