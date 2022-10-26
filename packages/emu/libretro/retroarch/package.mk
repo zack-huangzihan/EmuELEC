@@ -21,19 +21,26 @@
 PKG_NAME="retroarch"
 PKG_VERSION="1e4042d08b2514bca0e9b03fe721ad52cd071de1"
 PKG_SITE="https://github.com/libretro/RetroArch"
-PKG_URL="$PKG_SITE.git"
+#PKG_URL="$PKG_SITE.git"
+PKG_URL="file:///home/huangzihan/third_party/game_project/EmuELEC/sources/retroarch/$PKG_NAME-$PKG_VERSION.tar.gz"
+PKG_SOURCE_NAME="/home/huangzihan/third_party/game_project/EmuELEC/sources/retroarch/$PKG_NAME-$PKG_VERSION"
 PKG_LICENSE="GPLv3"
 PKG_DEPENDS_TARGET="toolchain SDL2 alsa-lib openssl freetype zlib retroarch-assets retroarch-overlays core-info ffmpeg libass joyutils empty $OPENGLES samba avahi nss-mdns freetype openal-soft"
 PKG_LONGDESC="Reference frontend for the libretro API."
-GET_HANDLER_SUPPORT="git"
+GET_HANDLER_SUPPORT="git file"
 
 if [ "${DEVICE}" = "Amlogic-ng" ] || [ "${DEVICE}" = "Amlogic-old" ]; then
   PKG_PATCH_DIRS="${DEVICE}"
 fi
 
-if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "GameForce" ] || [ "$DEVICE" == "RK356x" ] || [ "$DEVICE" == "OdroidM1" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "GameForce" ] || [ "$DEVICE" == "OdroidM1" ]; then
 PKG_DEPENDS_TARGET+=" libdrm librga"
 PKG_PATCH_DIRS="OdroidGoAdvance"
+fi
+
+if [ "$DEVICE" == "RK356x" ];then
+PKG_DEPENDS_TARGET+=" libdrm librga"
+PKG_PATCH_DIRS="rockchip"
 fi
 
 # Pulseaudio Support
@@ -73,7 +80,7 @@ PKG_CONFIGURE_OPTS_TARGET+=" --disable-kms \
                            --enable-mali_fbdev"
 fi
 
-if [ "$DEVICE" == "OdroidGoAdvance" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "RK356x" ]; then
 PKG_CONFIGURE_OPTS_TARGET+=" --enable-odroidgo2"
 fi
 
@@ -207,13 +214,15 @@ fi
   echo "menu_show_restart_retroarch = \"false\"" >> $INSTALL/etc/retroarch.cfg
   echo "menu_show_quit_retroarch = \"true\"" >> $INSTALL/etc/retroarch.cfg
   
-if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "GameForce" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "GameForce" ] || [ "$DEVICE" == "RK356x" ]; then
     echo "xmb_layout = 2" >> $INSTALL/etc/retroarch.cfg
-    echo "menu_widget_scale_auto = false" >> $INSTALL/etc/retroarch.cfg
+	echo "menu_widget_scale_auto = false" >> $INSTALL/etc/retroarch.cfg
     echo "menu_widget_scale_factor = 2.00" >> $INSTALL/etc/retroarch.cfg
     echo "menu_scale_factor = 1.000000" >> $INSTALL/etc/retroarch.cfg
     echo "video_font_size = 12.000000" >> $INSTALL/etc/retroarch.cfg
-    echo "menu_rgui_shadows = true" >> $INSTALL/etc/retroarch.cfg
+    echo "video_allow_rotate = true" >> $INSTALL/etc/retroarch.cfg
+	echo "screen_orientation = 1" >> $INSTALL/etc/retroarch.cfg
+	echo "menu_rgui_shadows = true" >> $INSTALL/etc/retroarch.cfg
     echo "rgui_aspect_ratio = 6" >> $INSTALL/etc/retroarch.cfg
     echo "rgui_inline_thumbnails = true" >> $INSTALL/etc/retroarch.cfg
     echo "input_max_users = 1" >> $INSTALL/etc/retroarch.cfg
