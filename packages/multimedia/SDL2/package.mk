@@ -19,6 +19,10 @@ if [ "$DEVICE" == "OdroidGoAdvance" ]; then
   PKG_PATCH_DIRS="OdroidGoAdvance"
 fi
 
+if [ "$DEVICE" == "RK356x" ]; then
+  PKG_PATCH_DIRS="rockchip"
+fi
+
 if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "GameForce" ] || [ "$DEVICE" == "RK356x" ] || [ "$DEVICE" == "OdroidM1" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libdrm mali-bifrost librga"
 fi
